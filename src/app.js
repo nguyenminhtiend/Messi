@@ -10,6 +10,7 @@ app.disable('x-powered-by');
 app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
+
 logRequest(app);
 initRoutes(app);
 app.use(errorHandler);
