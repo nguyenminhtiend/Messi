@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
 const helmet = require('helmet');
 const initRoutes = require('./routes');
 const { logRequest, logResponse, errorHandler } = require('./middlewares');
+
+const a = 1;
 
 const app = express();
 app.disable('x-powered-by');
