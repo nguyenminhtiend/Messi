@@ -9,7 +9,7 @@ module.exports = (app) => {
   files.forEach((filePath) => {
     const fullPath = path.join(process.cwd(), filePath);
     const relativePath = `./${path.relative(__dirname, fullPath)}`;
-    require(relativePath)(router);//eslint-disable-line
+    require(relativePath)(router); //eslint-disable-line
   });
 
   app.use('/api', router);
