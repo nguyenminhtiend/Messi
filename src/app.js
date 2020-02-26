@@ -5,8 +5,6 @@ const helmet = require('helmet');
 const initRoutes = require('./routes');
 const { logRequest, logResponse, errorHandler } = require('./middlewares');
 
-const a = 1;
-
 const app = express();
 app.disable('x-powered-by');
 app.use(helmet());
