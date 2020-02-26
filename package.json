@@ -2,15 +2,15 @@
   "name": "messi",
   "version": "1.0.0",
   "description": "Pilot Audit",
-  "main": "src/server.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon src/index.js",
     "start": "NODE_ENV=production node src/index.js"
   },
-  "author": "2359 Media Pte Ltd.",
+  "author": "Tien Nguyen.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/2359media/PSA-PASS-Server.git"
+    "url": "https://github.com/nguyenminhtiend/Messi.git"
   },
   "license": "ISC",
   "dependencies": {
@@ -37,5 +37,16 @@
     "lint-staged": "^10.0.8",
     "nodemon": "2.0.2",
     "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
