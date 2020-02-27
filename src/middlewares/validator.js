@@ -1,14 +1,44 @@
-const { AjvValidator } = require('../utils');
+const Ajv = require('ajv');
+const { AppError } = require('../utils');
 
-class Validator {
-  static validator(schema) {
-    return (req, res, next) => {
-      Object.keys(schema).forEach((key) => {
-        AjvValidator.validate(schema[key], req[key]);
-      });
-      next();
+const ajvOptionCore = { allErrors: true, $data: true };
+
+const ajv = new Ajv(ajvOptionCore);
+const ajvCoerceTypes = new Ajv({ ...ajvOptionCore, coerceTypes: true });
+require('ajv-keywords')(ajv);
+require('ajv-keywords')(ajvCoerceTypes);
+
+const parseError = (errors) => {
+  return errors.map((e) => {
+    const detailParams = Object.entries(e.params).map(
+      ([key, value]) => `${key} ${value}`
+    );
+    return {
+      [`${e.keyword} ${e.dataPath}`]: `${e.message} ${detailParams}`
     };
-  }
-}
+  });
+};
 
-module.exports = Validator;
+const validateSchema = (schema, data) => {
+  const _ajv = schema.coerceTypes ? ajvCoerceTypes : ajv;
+  const validate = _ajv.compile({
+    ...schema,
+    additionalProperties: schema.additionalProperties || false
+  });
+  const valid = validate(data);
+  if (!valid) {
+    const errors = parseError(validate.errors);
+    throw new AppError('One or more input are invalid!', 400, errors);
+  }
+};
+
+const validator = (schema) => {
+  return (req, res, next) => {
+    Object.keys(schema).forEach((key) => {
+      validateSchema(schema[key], req[key]);
+    });
+    next();
+  };
+};
+
+module.exports = validator;
