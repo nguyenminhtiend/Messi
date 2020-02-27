@@ -24,7 +24,9 @@ module.exports = class AjvValidator {
 
   static _parseError(errors) {
     return errors.map((e) => ({
-      [`${e.keyword} ${e.dataPath}`]: `${e.message} ${this._getDetailParams(e.params)}`
+      [`${e.keyword} ${e.dataPath}`]: `${e.message} ${this._getDetailParams(
+        e.params
+      )}`
     }));
   }
 

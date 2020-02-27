@@ -9,7 +9,9 @@ module.exports = (app) => {
     app.use((req, res, next) => {
       req.id = v4();
       req.startAt = new Date();
-      logger.info(`START ${req.method} ${req.url} ${moment().format()} ${req.id}`);
+      logger.info(
+        `START ${req.method} ${req.url} ${moment().format()} ${req.id}`
+      );
       next();
     });
   }
