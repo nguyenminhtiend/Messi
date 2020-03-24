@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  node-app:
+    build:
+      context: ./
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/app
+    networks:
+      - node-network
+volumes:
+  dbdata:
+
+networks:
+  node-network:
+    driver: bridge

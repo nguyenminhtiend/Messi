@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: basic-ingress
+  namespace: dev-ns
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: messi-api-svc
+              servicePort: 3000

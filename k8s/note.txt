@@ -1,0 +1,19 @@
+kubectl apply -f {file-name.yml}
+kubectl get pods
+kubectl get services
+kubectl get deployments
+kubectl get pods -o wide
+kubectl describe pods {name}
+docker logs {containerId}
+docker exec -it {id} sh
+kubectl exec -it {podName} wg sh
+docker system prune -a
+
+To run ingress local
++ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml
++ minikube addons enable ingress
+
+- Deploy to gcloud: https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
+kubectl create deployment messi-deployment --image=asia.gcr.io/messi-271108/messi
+export PROJECT_ID=messi-271108
+kubectl expose deployment messi-deployment --type=LoadBalancer --port 80 --target-port 3000

@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  node-app:
+    container_name: node-app-dev
+    command: npm run dev
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - MONGODB_URL=mongodb+srv://messi:P@ssw0rd@messi-99mjq.mongodb.net/test?retryWrites=true&w=majority

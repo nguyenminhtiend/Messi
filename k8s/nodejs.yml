@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: messi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: messi-nodejs
+  template:
+    metadata:
+      labels:
+        component: messi-nodejs
+    spec:
+      containers:
+        - name: messi
+          image: nguyenminhtiend/messi
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: messi-cluster-ip
+spec:
+  type: ClusterIP
+  selector:
+    component: messi-nodejs
+  ports:
+    - port: 3000
+      targetPort: 3000

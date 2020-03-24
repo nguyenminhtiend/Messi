@@ -4,9 +4,13 @@
   "description": "Nodejs boilerplate",
   "main": "src/index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon src/index.js",
+    "dev": "nodemon src/index.js",
     "start": "NODE_ENV=production node src/index.js",
-    "lint": "prettier --write '**/*.js' && eslint --fix '**/*.js'"
+    "lint": "prettier --write '**/*.js' && eslint --fix '**/*.js'",
+    "docker-build": "docker build -t nguyenminhtiend/messi .",
+    "docker-run": "docker run -p 3000:3000 messi",
+    "docker-push": "docker push nguyenminhtiend/messi",
+    "docker:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up"
   },
   "author": "Tien Nguyen",
   "repository": {

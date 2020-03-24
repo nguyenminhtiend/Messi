@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: messi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: messi-nodejs
+  template:
+    metadata:
+      labels:
+        component: messi-nodejs
+    spec:
+      containers:
+        - name: messi
+          image: asia.gcr.io/messi-271108/messi
+          ports:
+            - containerPort: 3000
