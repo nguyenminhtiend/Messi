@@ -1,8 +1,12 @@
+const axios = require('axios');
 const { User } = require('../../models');
 
+const { DEPARTMENT_API } = process.env;
+
 const getUsers = async () => {
+  const response = await axios.get(`${DEPARTMENT_API}/api/departments`);
   const users = await User.find().populate('department');
-  return { users11: users };
+  return { users, departments: response.data };
 };
 
 const getUserById = async (id) => {

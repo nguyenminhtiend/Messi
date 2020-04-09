@@ -4,14 +4,19 @@ metadata:
   name: ingress-service
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    #nginx.ingress.kubernetes.io/rewrite-target: /$1
     # UPDATE THIS LINE ABOVE
 spec:
   rules:
     - http:
         paths:
-          - path: /?(.*)
+          - path: /api/departments
             # UPDATE THIS LINE ABOVE
             backend:
-              serviceName: messi-cluster-ip
+              serviceName: department-cluster-ip
+              servicePort: 3001
+          - path: /api/users
+            # UPDATE THIS LINE ABOVE
+            backend:
+              serviceName: employee-cluster-ip
               servicePort: 3000

@@ -6,8 +6,6 @@ module.exports = (app) => {
   const router = express.Router();
 
   router.get('/', asyncRoute(departmentsController.getDepartments));
-  router.get('/:id', asyncRoute(departmentsController.getDepartmentById));
-  router.post('/', asyncRoute(departmentsController.createDepartment));
 
   app.use('/departments', router);
 };

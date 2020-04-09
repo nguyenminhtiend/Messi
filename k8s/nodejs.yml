@@ -1,31 +1,67 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: messi-deployment
+  name: deployment-employee
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: messi-nodejs
+      component: nodejs-employee
   template:
     metadata:
       labels:
-        component: messi-nodejs
+        component: nodejs-employee
     spec:
       containers:
-        - name: messi
-          image: nguyenminhtiend/messi
+        - name: employee
+          image: employee-service
+          imagePullPolicy: Never
           ports:
             - containerPort: 3000
+          env:
+            - name: DEPARTMENT_API
+              value: 'http://192.168.64.2'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-department
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: nodejs-department
+  template:
+    metadata:
+      labels:
+        component: nodejs-department
+    spec:
+      containers:
+        - name: department
+          image: nguyenminhtiend/messi-department
+          ports:
+            - containerPort: 3001
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: messi-cluster-ip
+  name: employee-cluster-ip
 spec:
   type: ClusterIP
   selector:
-    component: messi-nodejs
+    component: nodejs-employee
   ports:
     - port: 3000
       targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: department-cluster-ip
+spec:
+  type: ClusterIP
+  selector:
+    component: nodejs-department
+  ports:
+    - port: 3001
+      targetPort: 3001

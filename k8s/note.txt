@@ -17,3 +17,9 @@ To run ingress local
 kubectl create deployment messi-deployment --image=asia.gcr.io/messi-271108/messi
 export PROJECT_ID=messi-271108
 kubectl expose deployment messi-deployment --type=LoadBalancer --port 80 --target-port 3000
+
+
+- Bind local image to minikube
+eval $(minikube docker-env)
+minikube ssh
+docker images

@@ -2,7 +2,8 @@ module.exports = {
   env: {
     commonjs: true,
     es6: true,
-    node: true
+    node: true,
+    mocha: true
   },
   plugins: ['prettier'],
   extends: ['airbnb-base', 'prettier'],
