@@ -5,4 +5,7 @@ describe('#Run sample test()', () => {
   it('Should be true', () => {
     expect(2).to.equal(2);
   });
+  it('Should be true', () => {
+    expect(2).to.equal(3);
+  });
 });
