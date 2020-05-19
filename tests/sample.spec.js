@@ -8,7 +8,7 @@ describe('#Run sample test()', () => {
   it('Should be true', () => {
     expect(2).to.equal(2);
   });
-  it('Should be true', () => {
-    expect(2).to.equal(3);
+  it('Should be true 3', () => {
+    expect(3).to.equal(3);
   });
 });
