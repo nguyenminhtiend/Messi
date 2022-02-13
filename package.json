@@ -23,7 +23,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "ajv": "^6.12.0",
+    "ajv": "^6.12.3",
     "ajv-keywords": "^3.4.1",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
